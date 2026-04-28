@@ -1,9 +1,11 @@
 import { Link } from '@inertiajs/react';
-import { Globe, Mail, MapPin, Menu, Phone, X } from 'lucide-react';
-import { useEffect, useRef, useState, type PropsWithChildren } from 'react';
+import { Globe, Mail, MapPin, Menu, Phone, PhoneCall, X } from 'lucide-react';
+import { useEffect, useRef, useState  } from 'react';
+import type {PropsWithChildren} from 'react';
 import FloatingActions from '@/components/floating-actions';
 import { useLocale } from '@/contexts/locale-context';
 import { serviceSlugs } from '@/lib/gallery';
+import { SITE } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
 function useHideOnScroll(threshold = 80) {
@@ -15,11 +17,15 @@ function useHideOnScroll(threshold = 80) {
         let ticking = false;
 
         const onScroll = () => {
-            if (ticking) return;
+            if (ticking) {
+return;
+}
+
             ticking = true;
             window.requestAnimationFrame(() => {
                 const y = window.scrollY;
                 const diff = y - lastY.current;
+
                 if (y < threshold) {
                     setHidden(false);
                 } else if (diff > 6) {
@@ -27,12 +33,14 @@ function useHideOnScroll(threshold = 80) {
                 } else if (diff < -6) {
                     setHidden(false);
                 }
+
                 lastY.current = y;
                 ticking = false;
             });
         };
 
         window.addEventListener('scroll', onScroll, { passive: true });
+
         return () => window.removeEventListener('scroll', onScroll);
     }, [threshold]);
 
@@ -55,6 +63,7 @@ export function Brand({
     const nameEn = 'Al Nosor Al Zahabia';
     const nameAr = 'النسور الذهبية';
     const name = locale === 'ar' ? nameAr : nameEn;
+
     return (
         <Link
             href="/"
@@ -131,6 +140,7 @@ export function Brand({
 
 function LanguageToggle({ className }: { className?: string }) {
     const { toggleLocale, t } = useLocale();
+
     return (
         <button
             type="button"
@@ -298,8 +308,14 @@ export default function MarketingLayout({
                             </li>
                             <li className="flex items-start gap-2 transition-transform hover:scale-[1.03] ltr:hover:translate-x-1 rtl:hover:-translate-x-1">
                                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-                                <a href="tel:+971526726662" className="transition-colors hover:text-amber-200">
-                                    +971 52 672 6662
+                                <a href={`tel:${SITE.phone}`} dir="ltr" className="transition-colors hover:text-amber-200">
+                                    {SITE.phoneDisplay}
+                                </a>
+                            </li>
+                            <li className="flex items-start gap-2 transition-transform hover:scale-[1.03] ltr:hover:translate-x-1 rtl:hover:-translate-x-1">
+                                <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
+                                <a href={`tel:${SITE.landline}`} dir="ltr" className="transition-colors hover:text-amber-200">
+                                    {SITE.landlineDisplay}
                                 </a>
                             </li>
                             <li className="flex items-start gap-2 transition-transform hover:scale-[1.03] ltr:hover:translate-x-1 rtl:hover:-translate-x-1">

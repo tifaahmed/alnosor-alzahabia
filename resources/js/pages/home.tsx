@@ -1,40 +1,63 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
+    AirVent,
+    Anvil,
     ArrowRight,
-    Briefcase,
-    Building2,
-    CalendarHeart,
+    Bath,
+    BrickWall,
     ChevronLeft,
     ChevronRight,
+    Cog,
+    Droplet,
+    Droplets,
     Flame,
+    Grid3x3,
     Hammer,
-    Handshake,
-    Palette,
+    LayoutGrid,
+    Layers,
+    Paintbrush,
+    Pickaxe,
     Refrigerator,
     ShoppingBag,
-    ShoppingCart,
-    Truck,
+    Sparkles,
+    Square,
+    SquareStack,
     WashingMachine,
-    type LucideIcon,
+    WavesLadder,
+    Wrench,
+    Zap
+    
 } from 'lucide-react';
+import type {LucideIcon} from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Seo, { breadcrumbSchema, organizationSchema, websiteSchema } from '@/components/seo';
 import { useLocale } from '@/contexts/locale-context';
-import { serviceImages, serviceSlugs } from '@/lib/gallery';
 import MarketingLayout from '@/layouts/marketing-layout';
+import { serviceImages, serviceSlugs } from '@/lib/gallery';
 
-const serviceIcons = [
-    Handshake,
-    Building2,
-    Hammer,
-    ShoppingCart,
-    Briefcase,
-    Palette,
-    Truck,
-    CalendarHeart,
+const serviceIcons: LucideIcon[] = [
+    Wrench,
+    AirVent,
     WashingMachine,
     Flame,
     Refrigerator,
+    Droplets,
+    Paintbrush,
+    Layers,
+    SquareStack,
+    Grid3x3,
+    BrickWall,
+    Square,
+    Cog,
+    Droplet,
+    Bath,
+    Zap,
+    Hammer,
+    Anvil,
+    LayoutGrid,
+    WavesLadder,
+    Pickaxe,
+    Sparkles,
 ];
 
 export default function Home() {
@@ -49,6 +72,8 @@ export default function Home() {
         slug: serviceSlugs[i],
         image: serviceImages[serviceSlugs[i]],
     }));
+    const featuredGrid = services.slice(0, 9);
+    const featuredSlides = services.slice(0, 8);
 
     return (
         <MarketingLayout current="/">
@@ -119,7 +144,7 @@ export default function Home() {
                     </div>
                     <div className="relative">
                         <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-amber-200 via-amber-50 to-transparent opacity-70 blur-2xl dark:from-amber-900/30 dark:via-amber-900/10" />
-                        <ServicesSlider services={services} viewLabel={t.services.viewDetails ?? t.home.exploreServices} />
+                        <ServicesSlider services={featuredSlides} viewLabel={t.services.viewDetails ?? t.home.exploreServices} />
                     </div>
                 </div>
             </section>
@@ -144,8 +169,9 @@ export default function Home() {
                         </Link>
                     </div>
                     <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
-                        {services.map((s) => {
+                        {featuredGrid.map((s) => {
                             const Icon = s.icon;
+
                             return (
                                 <Link
                                     key={s.title}
@@ -230,8 +256,12 @@ function ServicesSlider({ services, viewLabel }: { services: Slide[]; viewLabel:
     const total = services.length;
 
     useEffect(() => {
-        if (paused || total < 2) return;
+        if (paused || total < 2) {
+return;
+}
+
         const id = setInterval(() => setIndex((i) => (i + 1) % total), 3500);
+
         return () => clearInterval(id);
     }, [paused, total]);
 
@@ -247,6 +277,7 @@ function ServicesSlider({ services, viewLabel }: { services: Slide[]; viewLabel:
             {services.map((s, i) => {
                 const Icon = s.icon;
                 const active = i === index;
+
                 return (
                     <Link
                         key={s.slug}

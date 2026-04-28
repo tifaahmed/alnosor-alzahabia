@@ -19,7 +19,10 @@
       "Bash(curl -s -o /dev/null -w \"home:%{http_code}\\\\n\" http://127.0.0.1:8000/)",
       "Bash(curl -s -o /dev/null -w \"detail:%{http_code}\\\\n\" http://127.0.0.1:8000/services/commercial-brokers)",
       "Bash(echo \"tsc-exit:$?\")",
-      "Bash(curl -s -o /dev/null -w \"contact-page:%{http_code}\\\\n\" http://127.0.0.1:8000/contact)"
+      "Bash(curl -s -o /dev/null -w \"contact-page:%{http_code}\\\\n\" http://127.0.0.1:8000/contact)",
+      "Bash(node -e ' *)",
+      "Bash(npx vite *)",
+      "Bash(npx eslint *)"
     ]
   }
 }

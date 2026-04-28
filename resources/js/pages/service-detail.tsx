@@ -1,19 +1,32 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import {
+    AirVent,
+    Anvil,
     ArrowRight,
-    Briefcase,
-    Building2,
-    CalendarHeart,
+    Bath,
+    BrickWall,
+    Cog,
+    Droplet,
+    Droplets,
     Flame,
+    Grid3x3,
     Hammer,
-    Handshake,
-    Palette,
+    LayoutGrid,
+    Layers,
+    Paintbrush,
+    Pickaxe,
     Play,
     Refrigerator,
-    ShoppingCart,
-    Truck,
+    Sparkles,
+    Square,
+    SquareStack,
     WashingMachine,
+    WavesLadder,
+    Wrench,
+    Zap
+    
 } from 'lucide-react';
+import type {LucideIcon} from 'lucide-react';
 import { useState } from 'react';
 import Seo, { breadcrumbSchema, organizationSchema, serviceSchema } from '@/components/seo';
 import {
@@ -23,8 +36,8 @@ import {
     DialogTitle,
 } from '@/components/ui/dialog';
 import { useLocale } from '@/contexts/locale-context';
-import { getServiceIndexBySlug } from '@/lib/gallery';
 import MarketingLayout from '@/layouts/marketing-layout';
+import { getServiceIndexBySlug } from '@/lib/gallery';
 
 type LocaleKey = 'ar' | 'en';
 type GalleryProp = {
@@ -35,18 +48,29 @@ type GalleryProp = {
     sort: number;
 };
 
-const serviceIcons = [
-    Handshake,
-    Building2,
-    Hammer,
-    ShoppingCart,
-    Briefcase,
-    Palette,
-    Truck,
-    CalendarHeart,
+const serviceIcons: LucideIcon[] = [
+    Wrench,
+    AirVent,
     WashingMachine,
     Flame,
     Refrigerator,
+    Droplets,
+    Paintbrush,
+    Layers,
+    SquareStack,
+    Grid3x3,
+    BrickWall,
+    Square,
+    Cog,
+    Droplet,
+    Bath,
+    Zap,
+    Hammer,
+    Anvil,
+    LayoutGrid,
+    WavesLadder,
+    Pickaxe,
+    Sparkles,
 ];
 
 export default function ServiceDetail({ slug, galleries = [] }: { slug: string; galleries?: GalleryProp[] }) {
@@ -176,6 +200,7 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                         <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
                             {galleries.map((item) => {
                                 const caption = captionFor(item);
+
                                 return (
                                     <button
                                         key={item.id}

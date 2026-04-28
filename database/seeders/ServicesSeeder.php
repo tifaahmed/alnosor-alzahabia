@@ -3,210 +3,425 @@
 namespace Database\Seeders;
 
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Database\Seeder;
 
 class ServicesSeeder extends Seeder
 {
     /**
-     * @var array<int, array{slug:string,icon:string,image_path:?string,title:array{ar:string,en:string},body:array{ar:string,en:string},bullets:array{ar:array<int,string>,en:array<int,string>}}>
+     * @var array<int, array{slug:string,icon:string,category:string,image_path:?string,title:array{ar:string,en:string},body:array{ar:string,en:string},bullets:array{ar:array<int,string>,en:array<int,string>}}>
      */
     private array $services = [
         [
-            'slug' => 'commercial-brokers',
-            'icon' => 'Handshake',
-            'image_path' => '/images/services/Commercial Brokers.jpg',
+            'slug' => 'general-maintenance',
+            'icon' => 'Wrench',
+            'category' => 'maintenance',
+            'image_path' => null,
             'title' => [
-                'en' => 'Commercial Brokers',
-                'ar' => 'وسيط تجاري',
+                'en' => 'General Home Maintenance',
+                'ar' => 'صيانة عامة',
             ],
             'body' => [
-                'en' => 'We facilitate trade between buyers and sellers across multiple sectors — sourcing the right counterparties, negotiating terms, and ensuring smooth handovers.',
-                'ar' => 'نسهّل التجارة بين المشترين والبائعين عبر قطاعات متعددة — نختار الأطراف المناسبة، ونتفاوض على الشروط، ونضمن انتقالاً سلساً.',
+                'en' => 'Fast and professional fixes for everyday household issues — same-day response and a clean handover.',
+                'ar' => 'إصلاح الأعطال المنزلية اليومية بشكل سريع واحترافي.',
             ],
             'bullets' => [
-                'en' => ['Vendor and buyer matchmaking', 'Contract negotiation support', 'Cross-border trade coordination'],
-                'ar' => ['ربط البائعين والمشترين', 'دعم التفاوض على العقود', 'تنسيق التجارة عبر الحدود'],
+                'en' => ['Rapid call-out response', 'Emergency fault repairs', 'Trained, vetted technicians'],
+                'ar' => ['استجابة سريعة للبلاغات', 'إصلاح فوري للأعطال الطارئة', 'فنيون متخصصون مدربون'],
             ],
         ],
         [
-            'slug' => 'building-materials',
-            'icon' => 'Building2',
-            'image_path' => '/images/services/Building & Construction Materials Wholesale Trading.jpg',
+            'slug' => 'ac-maintenance',
+            'icon' => 'AirVent',
+            'category' => 'maintenance',
+            'image_path' => null,
             'title' => [
-                'en' => 'Building & Construction Materials Wholesale Trading',
-                'ar' => 'تجارة مواد البناء بالجملة',
+                'en' => 'AC Maintenance & Service',
+                'ar' => 'صيانة تكييفات',
             ],
             'body' => [
-                'en' => 'Bulk supply of construction materials for contractors, developers and project managers — competitive pricing with reliable lead times.',
-                'ar' => 'إمداد بالجملة بمواد البناء للمقاولين والمطورين ومديري المشاريع — أسعار تنافسية ومواعيد تسليم موثوقة.',
+                'en' => 'Cleaning, refrigerant top-up, fault repair and tuning to restore peak cooling efficiency.',
+                'ar' => 'تنظيف، شحن فريون، إصلاح الأعطال وتحسين كفاءة التبريد.',
             ],
             'bullets' => [
-                'en' => ['Cement, steel & aggregates', 'Tiles, sanitaryware & fittings', 'Project-volume procurement'],
-                'ar' => ['الإسمنت والحديد والركام', 'البلاط والأدوات الصحية', 'مشتريات بأحجام المشاريع'],
-            ],
-        ],
-        [
-            'slug' => 'decoration-partitions',
-            'icon' => 'Hammer',
-            'image_path' => '/images/services/Decoration Materials & Partitions Trading.jpg',
-            'title' => [
-                'en' => 'Decoration Materials & Partitions Trading',
-                'ar' => 'تجارة مواد الديكور والقواطع',
-            ],
-            'body' => [
-                'en' => 'A curated catalogue of decoration materials, gypsum partitions, panels and finishing elements for residential and commercial fit-outs.',
-                'ar' => 'كتالوج منتقى من مواد الديكور وقواطع الجبس واللوحات وعناصر التشطيب للمساحات السكنية والتجارية.',
-            ],
-            'bullets' => [
-                'en' => ['Gypsum & glass partitions', 'Wall panels and cladding', 'Decorative finishing materials'],
-                'ar' => ['قواطع الجبس والزجاج', 'لوحات الجدران والكسوة', 'مواد التشطيب الديكورية'],
-            ],
-        ],
-        [
-            'slug' => 'e-commerce',
-            'icon' => 'ShoppingCart',
-            'image_path' => '/images/services/E-Commerce.jpg',
-            'title' => [
-                'en' => 'E-Commerce',
-                'ar' => 'التجارة الإلكترونية',
-            ],
-            'body' => [
-                'en' => 'A growing online presence connecting our trading capabilities to customers across the region — order, track and receive with ease.',
-                'ar' => 'حضور إلكتروني متنامٍ يربط قدراتنا التجارية بالعملاء في جميع أنحاء المنطقة — اطلب وتتبع واستلم بسهولة.',
-            ],
-            'bullets' => [
-                'en' => ['Digital catalogue access', 'Online ordering & quotes', 'Logistics coordination'],
-                'ar' => ['وصول للكتالوج الرقمي', 'الطلبات والعروض عبر الإنترنت', 'تنسيق الخدمات اللوجستية'],
-            ],
-        ],
-        [
-            'slug' => 'project-management',
-            'icon' => 'Briefcase',
-            'image_path' => '/images/services/Project Management Services.webp',
-            'title' => [
-                'en' => 'Project Management Services',
-                'ar' => 'خدمات إدارة المشاريع',
-            ],
-            'body' => [
-                'en' => 'End-to-end coordination of construction and fit-out projects — planning, procurement, scheduling, contractor management and handover.',
-                'ar' => 'تنسيق شامل لمشاريع البناء والتشطيب — التخطيط، الشراء، الجدولة، إدارة المقاولين والتسليم.',
-            ],
-            'bullets' => [
-                'en' => ['Schedule & cost control', 'Vendor coordination', 'Quality & safety oversight'],
-                'ar' => ['التحكم في الجدول والتكلفة', 'تنسيق الموردين', 'الإشراف على الجودة والسلامة'],
-            ],
-        ],
-        [
-            'slug' => 'interior-design',
-            'icon' => 'Palette',
-            'image_path' => '/images/services/Interior Design Consultancy.jpg',
-            'title' => [
-                'en' => 'Interior Design Consultancy',
-                'ar' => 'استشارات التصميم الداخلي',
-            ],
-            'body' => [
-                'en' => 'Tailored interior design direction — from concept and material selection to detailed drawings — for homes, offices and hospitality spaces.',
-                'ar' => 'توجيه تصميم داخلي مخصص — من المفهوم واختيار المواد إلى الرسومات التفصيلية — للمنازل والمكاتب والضيافة.',
-            ],
-            'bullets' => [
-                'en' => ['Concept & mood boards', 'Material specifications', '3D visualisation & drawings'],
-                'ar' => ['المفاهيم ولوحات الإلهام', 'مواصفات المواد', 'التصور ثلاثي الأبعاد والرسومات'],
-            ],
-        ],
-        [
-            'slug' => 'equipment-rental',
-            'icon' => 'Truck',
-            'image_path' => '/images/services/Construction Equipment Rental.jpg',
-            'title' => [
-                'en' => 'Construction Equipment Rental',
-                'ar' => 'تأجير معدات البناء',
-            ],
-            'body' => [
-                'en' => 'Rental of loading, lifting and construction equipment — wheeled and motorised — available with skilled operators when required.',
-                'ar' => 'تأجير معدات التحميل والرفع والبناء — بعجلات ومحركات — متاحة مع مشغلين مهرة عند الطلب.',
-            ],
-            'bullets' => [
-                'en' => ['Loaders, lifts & cranes', 'Short-term & long-term hire', 'Operator-included options'],
-                'ar' => ['المحملات والرافعات والروافع', 'إيجار قصير وطويل الأجل', 'خيارات تشمل المشغل'],
-            ],
-        ],
-        [
-            'slug' => 'event-management',
-            'icon' => 'CalendarHeart',
-            'image_path' => '/images/services/Social Event Management.jpg',
-            'title' => [
-                'en' => 'Social Event Management',
-                'ar' => 'إدارة الفعاليات الاجتماعية',
-            ],
-            'body' => [
-                'en' => 'Memorable corporate, cultural and private events — design, planning, vendor coordination and on-day execution from start to finish.',
-                'ar' => 'فعاليات مؤسسية وثقافية وخاصة لا تُنسى — التصميم والتخطيط وتنسيق الموردين والتنفيذ في اليوم.',
-            ],
-            'bullets' => [
-                'en' => ['Corporate gatherings', 'Weddings & private events', 'Cultural & community functions'],
-                'ar' => ['التجمعات المؤسسية', 'حفلات الزفاف والفعاليات الخاصة', 'الفعاليات الثقافية والمجتمعية'],
+                'en' => ['Indoor & outdoor unit cleaning', 'Refrigerant gas refill', 'Fault diagnosis & repair'],
+                'ar' => ['تنظيف الوحدات الداخلية والخارجية', 'شحن غاز الفريون', 'تشخيص وإصلاح الأعطال'],
             ],
         ],
         [
             'slug' => 'washing-machine-maintenance',
             'icon' => 'WashingMachine',
+            'category' => 'maintenance',
             'image_path' => '/images/services/Washing Machine Maintenance.jpg',
             'title' => [
-                'en' => 'Washing Machine Maintenance',
+                'en' => 'Washing Machine Repair',
                 'ar' => 'صيانة غسالات',
             ],
             'body' => [
-                'en' => 'Professional repair and maintenance for all washing machine brands and models — fast diagnosis, genuine spare parts and on-site service.',
-                'ar' => 'صيانة وإصلاح احترافي لجميع أنواع الغسالات وموديلاتها — تشخيص سريع، قطع غيار أصلية، وخدمة في الموقع.',
+                'en' => 'Diagnosis and repair across all washing-machine brands and models — top-load and front-load.',
+                'ar' => 'كشف وإصلاح الأعطال بجميع أنواع الغسالات.',
             ],
             'bullets' => [
                 'en' => ['All brands & models', 'Genuine spare parts', 'On-site repair service'],
-                'ar' => ['جميع الماركات والموديلات', 'قطع غيار أصلية', 'خدمة إصلاح في المنزل'],
+                'ar' => ['جميع الماركات والموديلات', 'قطع غيار أصلية', 'خدمة إصلاح في الموقع'],
             ],
         ],
         [
             'slug' => 'gas-stove-maintenance',
             'icon' => 'Flame',
+            'category' => 'maintenance',
             'image_path' => '/images/services/Gas Stove Maintenance.jpg',
             'title' => [
                 'en' => 'Gas Stove Maintenance',
-                'ar' => 'صيانة بوتجازات',
+                'ar' => 'صيانة بوتاجازات',
             ],
             'body' => [
-                'en' => 'Safe and certified maintenance of gas stoves and cookers — burner servicing, gas line checks and full safety inspection.',
-                'ar' => 'صيانة آمنة ومعتمدة للبوتجازات والمواقد — تنظيف الشعلات وفحص خطوط الغاز وفحص شامل للسلامة.',
+                'en' => 'Repair of gas faults, ignition issues and burner tuning for safe, reliable cooking performance.',
+                'ar' => 'تصليح مشاكل الغاز والإشعال وضبط الأداء.',
             ],
             'bullets' => [
-                'en' => ['Burner cleaning & repair', 'Gas line safety checks', 'Ignition & valve replacement'],
-                'ar' => ['تنظيف وإصلاح الشعلات', 'فحص خطوط الغاز والسلامة', 'استبدال الإشعال والصمامات'],
+                'en' => ['Gas fault repair', 'Ignition system service', 'Burner performance tuning'],
+                'ar' => ['إصلاح مشاكل الغاز', 'صيانة منظومة الإشعال', 'ضبط أداء الشعلات'],
             ],
         ],
         [
             'slug' => 'refrigerator-maintenance',
             'icon' => 'Refrigerator',
+            'category' => 'maintenance',
             'image_path' => '/images/services/Refrigerator Maintenance.jpeg',
             'title' => [
-                'en' => 'Refrigerator Maintenance',
+                'en' => 'Refrigerator Repair',
                 'ar' => 'صيانة تلاجات',
             ],
             'body' => [
-                'en' => 'Specialised refrigerator and freezer repair — cooling diagnostics, compressor service, gas refill and thermostat replacement.',
-                'ar' => 'إصلاح متخصص للثلاجات والمجمدات — تشخيص أعطال التبريد، صيانة الكمبروسر، شحن غاز التبريد، واستبدال الثرموستات.',
+                'en' => 'Cooling diagnostics, refrigerant leak repair and electrical fault service for fridges and freezers.',
+                'ar' => 'معالجة ضعف التبريد، تسريب الفريون، والأعطال الكهربائية.',
             ],
             'bullets' => [
-                'en' => ['Cooling system diagnostics', 'Compressor & gas refill', 'Thermostat & seal replacement'],
-                'ar' => ['تشخيص نظام التبريد', 'صيانة الكمبروسر وشحن الغاز', 'استبدال الثرموستات والإطارات'],
+                'en' => ['Cooling system diagnostics', 'Refrigerant leak repair', 'Electrical fault service'],
+                'ar' => ['تشخيص ضعف التبريد', 'إصلاح تسريب الفريون', 'معالجة الأعطال الكهربائية'],
+            ],
+        ],
+        [
+            'slug' => 'water-filters',
+            'icon' => 'Droplets',
+            'category' => 'maintenance',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Water Filter Installation & Service',
+                'ar' => 'فلاتر مياه',
+            ],
+            'body' => [
+                'en' => 'Installation and servicing of all water-filter types — including cartridge replacement — for clean, safe water at home.',
+                'ar' => 'تركيب وصيانة جميع أنواع فلاتر المياه وتغيير الشمعات لضمان مياه نقية.',
+            ],
+            'bullets' => [
+                'en' => ['All filter types installed', 'Regular cartridge replacement', 'Periodic system maintenance'],
+                'ar' => ['تركيب جميع أنواع الفلاتر', 'تغيير الشمعات بانتظام', 'صيانة دورية للأنظمة'],
+            ],
+        ],
+        [
+            'slug' => 'painting',
+            'icon' => 'Paintbrush',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Painting & Decorating',
+                'ar' => 'نقاشة ودهانات',
+            ],
+            'body' => [
+                'en' => 'Interior and exterior painting using premium materials — clean prep work and a flawless finish.',
+                'ar' => 'تنفيذ جميع أعمال الدهانات الداخلية والخارجية بأفضل الخامات.',
+            ],
+            'bullets' => [
+                'en' => ['Interior & exterior paint', 'Premium-grade materials', 'Meticulous final finishing'],
+                'ar' => ['دهانات داخلية وخارجية', 'خامات عالية الجودة', 'تشطيبات نهائية متقنة'],
+            ],
+        ],
+        [
+            'slug' => 'plastering',
+            'icon' => 'Layers',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Plastering',
+                'ar' => 'محارة',
+            ],
+            'body' => [
+                'en' => 'Expert wall and ceiling plastering — straight, smooth surfaces ready for a perfect final finish.',
+                'ar' => 'تجهيز الحوائط والأسقف بشكل متقن قبل التشطيب.',
+            ],
+            'bullets' => [
+                'en' => ['Wall & ceiling preparation', 'Smooth, level surfaces', 'Ready for paint or tile'],
+                'ar' => ['تجهيز الحوائط والأسقف', 'أسطح ناعمة ومستوية', 'أساس مثالي للتشطيب'],
+            ],
+        ],
+        [
+            'slug' => 'gypsum-board',
+            'icon' => 'SquareStack',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Gypsum Board Ceilings & Walls',
+                'ar' => 'جبس بورد',
+            ],
+            'body' => [
+                'en' => 'Design and installation of modern gypsum-board ceilings, walls and decorative features.',
+                'ar' => 'تصميم وتنفيذ ديكورات حديثة للأسقف والحوائط.',
+            ],
+            'bullets' => [
+                'en' => ['Suspended ceiling installation', 'Modern wall feature design', 'Custom-shaped fittings'],
+                'ar' => ['تصميم وتنفيذ الأسقف المعلقة', 'ديكورات حوائط حديثة', 'تنفيذ تصاميم مخصصة'],
+            ],
+        ],
+        [
+            'slug' => 'ceramic-tiling',
+            'icon' => 'Grid3x3',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Ceramic Floor & Wall Tiling',
+                'ar' => 'سيراميك (أرضيات وحوائط)',
+            ],
+            'body' => [
+                'en' => 'Professional ceramic tile installation with precise levelling and clean, even joints.',
+                'ar' => 'تركيب باحترافية مع ضبط الميزان والفواصل.',
+            ],
+            'bullets' => [
+                'en' => ['Floor & wall tiling', 'Precise levelling & spacing', 'Clean, lasting installation'],
+                'ar' => ['تركيب سيراميك للأرضيات والحوائط', 'ضبط الميزان والفواصل', 'تنفيذ احترافي يدوم'],
+            ],
+        ],
+        [
+            'slug' => 'concrete-works',
+            'icon' => 'BrickWall',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Masonry & Concrete Works',
+                'ar' => 'أعمال مباني وخرسانات',
+            ],
+            'body' => [
+                'en' => 'Construction of walls, structures and reinforced concrete elements built to engineering specifications.',
+                'ar' => 'تنفيذ وإنشاء الحوائط والهياكل الخرسانية.',
+            ],
+            'bullets' => [
+                'en' => ['Wall & masonry construction', 'Reinforced concrete works', 'Spec-compliant structures'],
+                'ar' => ['تنفيذ الحوائط والمباني', 'أعمال خرسانية متينة', 'هياكل مطابقة للمواصفات'],
+            ],
+        ],
+        [
+            'slug' => 'screed-floors',
+            'icon' => 'Square',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Screed Flooring',
+                'ar' => 'أرضيات سكريد',
+            ],
+            'body' => [
+                'en' => 'Precise floor levelling — a flat, true substrate ready for ceramic tile, marble or any final flooring.',
+                'ar' => 'تسوية الأرضيات بدقة قبل تركيب السيراميك أو الرخام.',
+            ],
+            'bullets' => [
+                'en' => ['Precise floor levelling', 'Ideal base for tile & marble', 'High-quality materials'],
+                'ar' => ['تسوية الأرضيات بدقة', 'أساس مستوٍ للسيراميك والرخام', 'خامات عالية الجودة'],
+            ],
+        ],
+        [
+            'slug' => 'helicopter-floors',
+            'icon' => 'Cog',
+            'category' => 'finishing',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Helicopter Power-Float Flooring',
+                'ar' => 'هليكوبتر أرضيات',
+            ],
+            'body' => [
+                'en' => 'Power-trowel finishing of concrete floors — a hard, smooth, durable surface for industrial and commercial spaces.',
+                'ar' => 'تشطيب الأرضيات الخرسانية بسطح ناعم ومتين.',
+            ],
+            'bullets' => [
+                'en' => ['Power-float concrete finish', 'Hard, smooth, durable surface', 'Workshops, warehouses, garages'],
+                'ar' => ['تشطيب أرضيات خرسانية', 'سطح ناعم ومتين', 'مناسب للورش والمصانع والكراجات'],
+            ],
+        ],
+        [
+            'slug' => 'plumbing',
+            'icon' => 'Droplet',
+            'category' => 'mep',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Plumbing Works',
+                'ar' => 'أعمال سباكة',
+            ],
+            'body' => [
+                'en' => 'Installation and maintenance of pipework, mixers and fittings — plus drain and blockage clearing.',
+                'ar' => 'تركيب وصيانة المواسير، الخلاطات، وتسليك الانسدادات.',
+            ],
+            'bullets' => [
+                'en' => ['Pipework installation & repair', 'Mixer & fixture fitting', 'Drain & blockage clearing'],
+                'ar' => ['تركيب وصيانة المواسير', 'تركيب وإصلاح الخلاطات', 'تسليك الانسدادات'],
+            ],
+        ],
+        [
+            'slug' => 'bathroom-finishing',
+            'icon' => 'Bath',
+            'category' => 'mep',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Bathroom Fit-Out',
+                'ar' => 'تشطيب حمامات',
+            ],
+            'body' => [
+                'en' => 'End-to-end bathroom fit-out — plumbing, ceramic tiling and full sanitaryware installation.',
+                'ar' => 'تنفيذ كامل للحمامات من سباكة وسيراميك وتركيبات.',
+            ],
+            'bullets' => [
+                'en' => ['Complete plumbing install', 'Ceramic tiling & finishes', 'Sanitaryware installation'],
+                'ar' => ['سباكة كاملة للحمام', 'سيراميك وتشطيبات', 'تركيب الأدوات الصحية'],
+            ],
+        ],
+        [
+            'slug' => 'electrical',
+            'icon' => 'Zap',
+            'category' => 'mep',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Electrical Works',
+                'ar' => 'أعمال كهرباء',
+            ],
+            'body' => [
+                'en' => 'First-fix and second-fix electrical installation, plus fault diagnosis and repair across the property.',
+                'ar' => 'تأسيس وتشطيب الكهرباء وصيانة الأعطال.',
+            ],
+            'bullets' => [
+                'en' => ['First-fix wiring & rough-in', 'Second-fix finishing', 'Fault diagnosis & repair'],
+                'ar' => ['تأسيس الأعمال الكهربائية', 'تشطيب اللوحات والمخارج', 'صيانة وإصلاح الأعطال'],
+            ],
+        ],
+        [
+            'slug' => 'carpentry',
+            'icon' => 'Hammer',
+            'category' => 'woodwork',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Carpentry & Joinery',
+                'ar' => 'أعمال نجارة',
+            ],
+            'body' => [
+                'en' => 'Custom-made doors, windows, kitchens and bedroom units — built and fitted to your specification.',
+                'ar' => 'تنفيذ الأبواب، الشبابيك، المطابخ وغرف النوم حسب الطلب.',
+            ],
+            'bullets' => [
+                'en' => ['Custom doors & windows', 'Bespoke fitted kitchens', 'Made-to-order bedroom sets'],
+                'ar' => ['أبواب وشبابيك خشبية', 'مطابخ مصنّعة حسب الطلب', 'غرف نوم متكاملة'],
+            ],
+        ],
+        [
+            'slug' => 'ironwork',
+            'icon' => 'Anvil',
+            'category' => 'woodwork',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Ironwork & Crittall Fabrication',
+                'ar' => 'أعمال حدادة',
+            ],
+            'body' => [
+                'en' => 'Fabrication and installation of iron doors, Crittall-style windows, staircases and security grilles.',
+                'ar' => 'تصنيع وتركيب الأبواب الحديد، الكريتال، السلالم، والشبابيك.',
+            ],
+            'bullets' => [
+                'en' => ['Iron & Crittall doors', 'Steel staircases', 'Custom iron windows'],
+                'ar' => ['أبواب حديد وكريتال', 'سلالم حديدية', 'شبابيك حديد مخصصة'],
+            ],
+        ],
+        [
+            'slug' => 'interlock-paving',
+            'icon' => 'LayoutGrid',
+            'category' => 'exterior',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Interlock Paving',
+                'ar' => 'إنترلوك',
+            ],
+            'body' => [
+                'en' => 'Interlock block paving for driveways, walkways and entrances — durable, attractive and low-maintenance.',
+                'ar' => 'تركيب بلاط إنترلوك للطرق والمداخل بشكل متين وجمالي.',
+            ],
+            'bullets' => [
+                'en' => ['Driveways & roadways', 'Entrances & car parks', 'Strong, attractive finish'],
+                'ar' => ['تركيب إنترلوك للطرق', 'مداخل ومواقف سيارات', 'تركيب متين وأنيق'],
+            ],
+        ],
+        [
+            'slug' => 'swimming-pools',
+            'icon' => 'WavesLadder',
+            'category' => 'exterior',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Swimming Pool Construction & Service',
+                'ar' => 'حمامات سباحة',
+            ],
+            'body' => [
+                'en' => 'Build, finish and maintain swimming pools of every shape and size — from concept through ongoing service.',
+                'ar' => 'تنفيذ وتشطيب وصيانة حمامات السباحة بكافة الأنواع.',
+            ],
+            'bullets' => [
+                'en' => ['Build & finishing', 'Regular maintenance', 'All shapes & sizes'],
+                'ar' => ['تنفيذ وتشطيب الحمامات', 'صيانة دورية', 'جميع الأشكال والأحجام'],
+            ],
+        ],
+        [
+            'slug' => 'demolition-renovation',
+            'icon' => 'Pickaxe',
+            'category' => 'renovation',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Demolition & Restoration Prep',
+                'ar' => 'تكسير وترميم',
+            ],
+            'body' => [
+                'en' => 'Safe demolition of old finishes and structures — and full site preparation for the renovation that follows.',
+                'ar' => 'إزالة الأجزاء القديمة وتجهيز المكان للتجديد.',
+            ],
+            'bullets' => [
+                'en' => ['Old structure removal', 'Site clearance & prep', 'Safe debris disposal'],
+                'ar' => ['إزالة الأجزاء القديمة', 'تجهيز المكان للتجديد', 'تخلص آمن من المخلفات'],
+            ],
+        ],
+        [
+            'slug' => 'apartment-shop-renovation',
+            'icon' => 'Sparkles',
+            'category' => 'renovation',
+            'image_path' => null,
+            'title' => [
+                'en' => 'Apartment & Shop Renovation',
+                'ar' => 'تجديد شقق ومحلات',
+            ],
+            'body' => [
+                'en' => 'End-to-end renovation of apartments and retail spaces — modernising every detail to the latest design standards.',
+                'ar' => 'تطوير وتجديد كامل حسب طلب العميل بأحدث التصميمات.',
+            ],
+            'bullets' => [
+                'en' => ['Full apartment renovation', 'Retail & shop fit-out', 'Modern bespoke designs'],
+                'ar' => ['تجديد كامل للشقق', 'تطوير المحلات التجارية', 'تصاميم حديثة مخصصة'],
             ],
         ],
     ];
 
     public function run(): void
     {
+        Service::query()->whereNotIn('slug', array_column($this->services, 'slug'))->delete();
+
+        $categoryIds = ServiceCategory::query()->pluck('id', 'key');
+
         foreach ($this->services as $idx => $data) {
             Service::updateOrCreate(
                 ['slug' => $data['slug']],
                 [
                     'icon' => $data['icon'],
+                    'service_category_id' => $categoryIds[$data['category']] ?? null,
                     'image_path' => $data['image_path'],
                     'title' => $data['title'],
                     'body' => $data['body'],

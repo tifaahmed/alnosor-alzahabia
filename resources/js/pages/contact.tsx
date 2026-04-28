@@ -1,8 +1,9 @@
 import { useForm, usePage } from '@inertiajs/react';
-import { Building2, Clock, Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
+import { Building2, Clock, Mail, MapPin, MessageSquare, Phone, PhoneCall, Send } from 'lucide-react';
 import Seo, { breadcrumbSchema, organizationSchema } from '@/components/seo';
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
+import { SITE } from '@/lib/i18n';
 
 const inputClass =
     'w-full rounded-xl border border-amber-200 bg-[#FBF7EF] px-4 py-2.5 text-sm text-[#1b1b18] placeholder:text-[#4a4a45]/50 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 dark:border-amber-900/40 dark:bg-[#0f0f0e] dark:text-amber-100 dark:placeholder:text-amber-100/30 dark:focus:bg-[#161615]';
@@ -96,13 +97,31 @@ export default function Contact() {
                                         </span>
                                         <div>
                                             <p className="font-semibold text-[#1b1b18] dark:text-amber-100">
-                                                {t.contact.phone}
+                                                {t.contact.mobile}
                                             </p>
                                             <a
-                                                href="tel:+971526726662"
+                                                href={`tel:${SITE.phone}`}
+                                                dir="ltr"
                                                 className="mt-1 block text-[#4a4a45] hover:text-amber-700 dark:text-amber-100/70 dark:hover:text-amber-300"
                                             >
-                                                +971 52 672 6662
+                                                {SITE.phoneDisplay}
+                                            </a>
+                                        </div>
+                                    </li>
+                                    <li className="group flex items-start gap-4 transition-all duration-200 hover:scale-[1.03] ltr:hover:translate-x-2 rtl:hover:-translate-x-2">
+                                        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-700 transition-transform group-hover:scale-110 group-hover:rotate-6 dark:bg-amber-900/40 dark:text-amber-300">
+                                            <PhoneCall className="h-5 w-5" />
+                                        </span>
+                                        <div>
+                                            <p className="font-semibold text-[#1b1b18] dark:text-amber-100">
+                                                {t.contact.landline}
+                                            </p>
+                                            <a
+                                                href={`tel:${SITE.landline}`}
+                                                dir="ltr"
+                                                className="mt-1 block text-[#4a4a45] hover:text-amber-700 dark:text-amber-100/70 dark:hover:text-amber-300"
+                                            >
+                                                {SITE.landlineDisplay}
                                             </a>
                                         </div>
                                     </li>

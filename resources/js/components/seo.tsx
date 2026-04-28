@@ -94,7 +94,7 @@ export function organizationSchema(baseUrl: string) {
         url: baseUrl,
         logo: `${baseUrl}${SITE.logo}`,
         image: `${baseUrl}${SITE.logo}`,
-        telephone: SITE.phone,
+        telephone: [SITE.phone, SITE.landline],
         email: SITE.email,
         foundingDate: SITE.foundingDate,
         address: {

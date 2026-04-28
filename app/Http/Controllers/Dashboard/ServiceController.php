@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -20,8 +21,18 @@ class ServiceController extends Controller
             ->get()
             ->map(fn ($s) => $this->serialize($s, withGalleries: false));
 
+        $categories = ServiceCategory::orderBy('sort')
+            ->orderBy('id')
+            ->get()
+            ->map(fn ($c) => [
+                'id' => $c->id,
+                'key' => $c->key,
+                'name' => $c->getTranslations('name'),
+            ]);
+
         return Inertia::render('dashboard/services/index', [
             'services' => $services,
+            'categories' => $categories,
         ]);
     }
 
@@ -39,6 +50,7 @@ class ServiceController extends Controller
         Service::create([
             'slug' => $slug,
             'icon' => $data['icon'] ?? null,
+            'service_category_id' => $data['service_category_id'] ?? null,
             'image_path' => $imagePath,
             'title' => $this->trans($data, 'title') ?? [],
             'body' => $this->trans($data, 'body'),
@@ -60,6 +72,7 @@ class ServiceController extends Controller
             ignoreId: $service->id,
         );
         $service->icon = $data['icon'] ?? null;
+        $service->service_category_id = $data['service_category_id'] ?? null;
         $service->setTranslations('title', $this->trans($data, 'title') ?? []);
         $service->setTranslations('body', $this->trans($data, 'body') ?? []);
         $service->setTranslations('bullets', $this->bulletsTrans($data) ?? []);
@@ -104,6 +117,7 @@ class ServiceController extends Controller
         return $request->validate([
             'slug' => ['nullable', 'string', 'max:120'],
             'icon' => ['nullable', 'string', 'max:80'],
+            'service_category_id' => ['nullable', 'integer', 'exists:service_categories,id'],
             'title.ar' => ['nullable', 'string', 'max:200'],
             'title.en' => ['nullable', 'string', 'max:200'],
             'body.ar' => ['nullable', 'string', 'max:2000'],
@@ -197,6 +211,7 @@ class ServiceController extends Controller
             'id' => $s->id,
             'slug' => $s->slug,
             'icon' => $s->icon,
+            'service_category_id' => $s->service_category_id,
             'image_path' => $s->image_path,
             'title' => $s->getTranslations('title'),
             'body' => $s->getTranslations('body'),

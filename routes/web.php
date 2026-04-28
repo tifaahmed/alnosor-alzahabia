@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Dashboard\ProjectCategoryController;
 use App\Http\Controllers\Dashboard\ProjectController;
+use App\Http\Controllers\Dashboard\ServiceCategoryController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\ServiceGalleryController;
 use App\Http\Controllers\ProjectsController;
@@ -88,6 +89,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('projects', [ProjectController::class, 'store'])->name('projects.store');
         Route::post('projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
         Route::delete('projects/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+        Route::get('service-categories', [ServiceCategoryController::class, 'index'])->name('service-categories.index');
+        Route::post('service-categories', [ServiceCategoryController::class, 'store'])->name('service-categories.store');
+        Route::put('service-categories/{category}', [ServiceCategoryController::class, 'update'])->name('service-categories.update');
+        Route::delete('service-categories/{category}', [ServiceCategoryController::class, 'destroy'])->name('service-categories.destroy');
 
         Route::get('services', [ServiceController::class, 'index'])->name('services.index');
         Route::post('services', [ServiceController::class, 'store'])->name('services.store');

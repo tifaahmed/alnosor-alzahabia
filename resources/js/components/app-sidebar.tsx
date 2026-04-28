@@ -1,7 +1,6 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Briefcase, FolderGit2, FolderTree, Images, LayoutGrid } from 'lucide-react';
+import { Briefcase, FolderTree, Images, LayoutGrid, Tags } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
-import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
 import {
@@ -14,8 +13,9 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
-import categoriesRoutes from '@/routes/dashboard/project-categories';
+import projectCategoriesRoutes from '@/routes/dashboard/project-categories';
 import projectsRoutes from '@/routes/dashboard/projects';
+import serviceCategoriesRoutes from '@/routes/dashboard/service-categories';
 import servicesRoutes from '@/routes/dashboard/services';
 import type { NavItem } from '@/types';
 
@@ -31,27 +31,19 @@ const mainNavItems: NavItem[] = [
         icon: Briefcase,
     },
     {
+        title: 'Service Categories',
+        href: serviceCategoriesRoutes.index(),
+        icon: Tags,
+    },
+    {
         title: 'Projects',
         href: projectsRoutes.index(),
         icon: Images,
     },
     {
         title: 'Project Categories',
-        href: categoriesRoutes.index(),
+        href: projectCategoriesRoutes.index(),
         icon: FolderTree,
-    },
-];
-
-const footerNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
     },
 ];
 
@@ -75,7 +67,6 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                <NavFooter items={footerNavItems} className="mt-auto" />
                 <NavUser />
             </SidebarFooter>
         </Sidebar>
