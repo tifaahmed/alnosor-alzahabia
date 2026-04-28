@@ -34,6 +34,7 @@ import Seo, { breadcrumbSchema, organizationSchema, websiteSchema } from '@/comp
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
 import { serviceImages, serviceSlugs } from '@/lib/gallery';
+import { SITE } from '@/lib/i18n';
 
 const serviceIcons: LucideIcon[] = [
     Wrench,
@@ -102,6 +103,9 @@ export default function Home() {
                             {t.home.badge}
                         </span>
                         <h1 className="mt-5 text-4xl font-semibold leading-[1.1] tracking-tight text-[#1b1b18] md:text-5xl lg:text-6xl dark:text-amber-100">
+                            <span className="sr-only">
+                                {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                            </span>
                             {t.home.headlineStart}{' '}
                             <span className="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-600 bg-clip-text text-transparent">
                                 {t.home.headlineHighlight}
@@ -114,6 +118,7 @@ export default function Home() {
                         <div className="mt-8 flex flex-wrap items-center gap-4">
                             <Link
                                 href="/services"
+                                title={t.home.exploreServices}
                                 className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-amber-400 hover:to-amber-600"
                             >
                                 {t.home.exploreServices}
@@ -121,6 +126,7 @@ export default function Home() {
                             </Link>
                             <Link
                                 href="/contact"
+                                title={t.home.talkToUs}
                                 className="inline-flex items-center gap-2 rounded-full border border-amber-700/40 bg-white/60 px-6 py-3 text-sm font-semibold text-amber-800 backdrop-blur transition hover:scale-105 hover:bg-amber-100 dark:border-amber-300/30 dark:bg-amber-900/20 dark:text-amber-100 dark:hover:bg-amber-900/40"
                             >
                                 {t.home.talkToUs}
@@ -162,6 +168,7 @@ export default function Home() {
                         </div>
                         <Link
                             href="/services"
+                            title={t.home.seeAll}
                             className="inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition hover:scale-105 hover:text-amber-900 dark:text-amber-300 dark:hover:text-amber-100"
                         >
                             {t.home.seeAll}
@@ -176,6 +183,7 @@ export default function Home() {
                                 <Link
                                     key={s.title}
                                     href={`/services/${s.slug}`}
+                                    title={s.title}
                                     className="group block rounded-2xl border border-amber-200/70 bg-[#FBF7EF] p-4 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03] hover:border-amber-400 hover:shadow-xl sm:p-6 dark:border-amber-900/40 dark:bg-[#161615]"
                                 >
                                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 text-white shadow-sm transition-transform group-hover:scale-110 group-hover:rotate-3">
@@ -236,6 +244,7 @@ export default function Home() {
                         <p className="mt-3 text-sm text-[#4a4a45] dark:text-amber-100/70">{t.home.ctaBody}</p>
                         <Link
                             href="/contact"
+                            title={t.home.ctaButton}
                             className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#1b1b18] px-5 py-3 text-sm font-semibold text-amber-100 transition hover:scale-105 hover:bg-amber-700"
                         >
                             {t.home.ctaButton}
@@ -282,6 +291,7 @@ return;
                     <Link
                         key={s.slug}
                         href={`/services/${s.slug}`}
+                        title={s.title}
                         aria-hidden={!active}
                         tabIndex={active ? 0 : -1}
                         className={`absolute inset-0 flex flex-col justify-between p-8 text-amber-50 transition-all duration-700 ease-out ${
@@ -293,6 +303,7 @@ return;
                         <img
                             src={s.image}
                             alt={s.title}
+                            title={s.title}
                             loading={i === 0 ? 'eager' : 'lazy'}
                             className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[5000ms] ease-out ${
                                 active ? 'scale-110' : 'scale-100'

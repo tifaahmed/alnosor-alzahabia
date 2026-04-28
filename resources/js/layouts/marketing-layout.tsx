@@ -67,8 +67,9 @@ export function Brand({
     return (
         <Link
             href="/"
+            title={`${name} — ${locale === 'ar' ? 'الرئيسية' : 'Home'}`}
             className="group relative flex items-center gap-3 [perspective:800px]"
-            aria-label="Al Nosor Al Zahabia — Home"
+            aria-label={`${name} — Home`}
         >
             <span className="relative inline-block shrink-0">
                 <span
@@ -82,7 +83,10 @@ export function Brand({
                 />
                 <img
                     src="/images/logos/logo-with-text-without-background.png"
-                    alt="Al Nosor Al Zahabia FZE LLC"
+                    alt="Al Nosor Al Zahabia FZE LLC — النسور الذهبية"
+                    title="Al Nosor Al Zahabia FZE LLC"
+                    width={120}
+                    height={120}
                     className={cn(
                         sizes.logo,
                         'relative w-auto transition-transform duration-500 group-hover:[transform:rotateY(15deg)_scale(1.12)]',
@@ -192,6 +196,7 @@ export default function MarketingLayout({
                         <Link
                             key={`m-${i}`}
                             href={`/services/${item.slug}`}
+                            title={item.title}
                             dir={dir}
                             className="flex shrink-0 items-center gap-3 text-sm font-semibold text-amber-800 transition-colors hover:text-amber-600 active:text-amber-700 dark:text-amber-200 dark:hover:text-amber-100"
                         >
@@ -210,11 +215,13 @@ export default function MarketingLayout({
             >
                 <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
                     <Brand />
-                    <nav className="hidden items-center gap-1 md:flex">
+                    <nav className="hidden items-center gap-1 md:flex" aria-label={t.nav.home}>
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
+                                title={link.label}
+                                aria-current={current === link.href ? 'page' : undefined}
                                 className={cn(
                                     'rounded-full px-4 py-2 text-sm font-medium transition-all hover:scale-105',
                                     current === link.href
@@ -230,6 +237,7 @@ export default function MarketingLayout({
                         <LanguageToggle />
                         <Link
                             href="/contact"
+                            title={t.nav.getQuote}
                             className="rounded-full border border-amber-700 bg-gradient-to-b from-amber-500 to-amber-700 px-5 py-2 text-sm font-semibold text-white shadow-sm transition hover:scale-105 hover:from-amber-400 hover:to-amber-600"
                         >
                             {t.nav.getQuote}
@@ -251,6 +259,8 @@ export default function MarketingLayout({
                                 <Link
                                     key={link.href}
                                     href={link.href}
+                                    title={link.label}
+                                    aria-current={current === link.href ? 'page' : undefined}
                                     className={cn(
                                         'rounded-md px-3 py-2 text-sm font-medium transition-all hover:scale-[1.02]',
                                         current === link.href
@@ -289,6 +299,7 @@ export default function MarketingLayout({
                                 >
                                     <Link
                                         href={link.href}
+                                        title={link.label}
                                         className="inline-block text-amber-100/70 transition-colors hover:text-amber-200"
                                     >
                                         {link.label}
@@ -308,13 +319,23 @@ export default function MarketingLayout({
                             </li>
                             <li className="flex items-start gap-2 transition-transform hover:scale-[1.03] ltr:hover:translate-x-1 rtl:hover:-translate-x-1">
                                 <Phone className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-                                <a href={`tel:${SITE.phone}`} dir="ltr" className="transition-colors hover:text-amber-200">
+                                <a
+                                    href={`tel:${SITE.phone}`}
+                                    title={`Call ${SITE.name} — ${SITE.phoneDisplay}`}
+                                    dir="ltr"
+                                    className="transition-colors hover:text-amber-200"
+                                >
                                     {SITE.phoneDisplay}
                                 </a>
                             </li>
                             <li className="flex items-start gap-2 transition-transform hover:scale-[1.03] ltr:hover:translate-x-1 rtl:hover:-translate-x-1">
                                 <PhoneCall className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
-                                <a href={`tel:${SITE.landline}`} dir="ltr" className="transition-colors hover:text-amber-200">
+                                <a
+                                    href={`tel:${SITE.landline}`}
+                                    title={`Call ${SITE.name} landline — ${SITE.landlineDisplay}`}
+                                    dir="ltr"
+                                    className="transition-colors hover:text-amber-200"
+                                >
                                     {SITE.landlineDisplay}
                                 </a>
                             </li>
@@ -322,6 +343,7 @@ export default function MarketingLayout({
                                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
                                 <a
                                     href="mailto:info@alnosoralzahabia.com"
+                                    title={`Email ${SITE.name} — info@alnosoralzahabia.com`}
                                     className="transition-colors hover:text-amber-200"
                                 >
                                     info@alnosoralzahabia.com

@@ -3,11 +3,12 @@ import { Award, Building, Compass, Globe2, Sparkles, Target } from 'lucide-react
 import Seo, { breadcrumbSchema, organizationSchema } from '@/components/seo';
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
+import { SITE } from '@/lib/i18n';
 
 const valueIcons = [Award, Sparkles, Compass, Globe2];
 
 export default function About() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
     const page = usePage<{ site?: { url?: string } }>();
     const baseUrl = (page.props.site?.url ?? '').replace(/\/$/, '');
     const values = t.about.values.map((v, i) => ({ ...v, icon: valueIcons[i] }));
@@ -40,6 +41,9 @@ export default function About() {
                         {t.about.badge}
                     </span>
                     <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#1b1b18] md:text-5xl dark:text-amber-100">
+                        <span className="sr-only">
+                            {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                        </span>
                         {t.about.heading}
                     </h1>
                     <p className="mt-6 text-lg text-[#4a4a45] dark:text-amber-100/70">{t.about.lead}</p>
@@ -78,6 +82,7 @@ export default function About() {
                     <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                         {values.map((v) => {
                             const Icon = v.icon;
+
                             return (
                                 <div
                                     key={v.title}
@@ -153,6 +158,7 @@ export default function About() {
                     <div className="mt-10 text-center">
                         <Link
                             href="/contact"
+                            title={t.about.workWithUs}
                             className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-amber-400 hover:to-amber-600"
                         >
                             {t.about.workWithUs}

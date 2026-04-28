@@ -5,6 +5,7 @@ import Seo, { breadcrumbSchema, organizationSchema } from '@/components/seo';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
+import { SITE } from '@/lib/i18n';
 
 type Translatable = { ar?: string; en?: string };
 type Category = {
@@ -76,6 +77,9 @@ export default function Projects({
                         {t.projects.badge}
                     </span>
                     <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#1b1b18] md:text-5xl dark:text-amber-100">
+                        <span className="sr-only">
+                            {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                        </span>
                         {t.projects.heading}
                     </h1>
                     <p className="mt-6 text-lg text-[#4a4a45] dark:text-amber-100/70">{t.projects.lead}</p>
@@ -112,6 +116,7 @@ export default function Projects({
                         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
                             {projects.map((item) => {
                                 const title = pick(item.title, locale);
+
                                 return (
                                     <button
                                         key={item.id}
@@ -122,6 +127,7 @@ export default function Projects({
                                         {item.media_type === 'video' ? (
                                             <video
                                                 src={item.media_path}
+                                                title={title || `${t.projects.heading} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}
                                                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                 muted
                                                 playsInline
@@ -130,7 +136,8 @@ export default function Projects({
                                         ) : (
                                             <img
                                                 src={item.media_path}
-                                                alt={title}
+                                                alt={title || `${t.projects.heading} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}
+                                                title={title || (locale === 'ar' ? SITE.nameAr : SITE.name)}
                                                 loading="lazy"
                                                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                             />
@@ -174,6 +181,7 @@ export default function Projects({
                                 <video
                                     key={openItem.id}
                                     src={openItem.media_path}
+                                    title={pick(openItem.title, locale) || (locale === 'ar' ? SITE.nameAr : SITE.name)}
                                     controls
                                     autoPlay
                                     className="max-h-[65vh] w-full"
@@ -181,7 +189,8 @@ export default function Projects({
                             ) : (
                                 <img
                                     src={openItem.media_path}
-                                    alt={pick(openItem.title, locale)}
+                                    alt={pick(openItem.title, locale) || `${t.projects.heading} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}
+                                    title={pick(openItem.title, locale) || (locale === 'ar' ? SITE.nameAr : SITE.name)}
                                     className="max-h-[65vh] w-full object-contain"
                                 />
                             )}

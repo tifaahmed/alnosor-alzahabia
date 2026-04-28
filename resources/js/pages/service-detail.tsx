@@ -38,6 +38,7 @@ import {
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
 import { getServiceIndexBySlug } from '@/lib/gallery';
+import { SITE } from '@/lib/i18n';
 
 type LocaleKey = 'ar' | 'en';
 type GalleryProp = {
@@ -85,13 +86,19 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
     if (serviceIdx < 0) {
         return (
             <MarketingLayout current="/services">
-                <Head title={t.serviceDetail.notFound} />
+                <Head title={`${t.serviceDetail.notFound} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}>
+                    <meta name="robots" content="noindex, follow" />
+                </Head>
                 <section className="mx-auto max-w-4xl px-6 py-32 text-center">
                     <h1 className="text-3xl font-semibold text-[#1b1b18] dark:text-amber-100">
+                        <span className="sr-only">
+                            {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                        </span>
                         {t.serviceDetail.notFound}
                     </h1>
                     <Link
                         href="/services"
+                        title={t.serviceDetail.backToServices}
                         className="mt-6 inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-md hover:scale-105"
                     >
                         {t.serviceDetail.backToServices}
@@ -107,9 +114,9 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
     return (
         <MarketingLayout current="/services">
             <Seo
-                title={`${service.title} — Al Nosor Al Zahabia`}
+                title={`${service.title} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}
                 description={service.body}
-                keywords={t.seo.services.keywords}
+                keywords={`${service.title}, ${t.seo.services.keywords}`}
                 structuredData={[
                     organizationSchema(baseUrl),
                     serviceSchema(baseUrl, service.title, service.body, slug),
@@ -132,6 +139,7 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                 <div className="mx-auto max-w-5xl px-6 pt-16 pb-12">
                     <Link
                         href="/services"
+                        title={t.serviceDetail.backToServices}
                         className="inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition hover:scale-105 dark:text-amber-300"
                     >
                         <ArrowRight className="h-4 w-4 rtl:rotate-0 ltr:rotate-180" />
@@ -147,6 +155,9 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                             </span>
                             <h1 className="mt-2 text-3xl font-semibold leading-tight tracking-tight text-[#1b1b18] md:text-4xl dark:text-amber-100">
                                 {service.title}
+                                <span className="sr-only">
+                                    {' '}— {locale === 'ar' ? SITE.nameAr : SITE.name}
+                                </span>
                             </h1>
                         </div>
                     </div>
@@ -213,6 +224,7 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                                                 <>
                                                     <video
                                                         src={item.media_path}
+                                                        title={caption || `${service.title} — ${t.serviceDetail.previousWork}`}
                                                         muted
                                                         playsInline
                                                         preload="metadata"
@@ -227,7 +239,8 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                                             ) : (
                                                 <img
                                                     src={item.media_path}
-                                                    alt={caption}
+                                                    alt={caption || `${service.title} — ${t.serviceDetail.previousWork}`}
+                                                    title={caption || service.title}
                                                     loading="lazy"
                                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                 />
@@ -256,6 +269,7 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                     </p>
                     <Link
                         href="/contact"
+                        title={t.services.ctaButton}
                         className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-amber-400 hover:to-amber-600"
                     >
                         {t.services.ctaButton}
@@ -272,6 +286,7 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                                 <video
                                     key={openItem.id}
                                     src={openItem.media_path}
+                                    title={captionFor(openItem) || service.title}
                                     controls
                                     autoPlay
                                     className="max-h-[60vh] w-full"
@@ -279,7 +294,8 @@ export default function ServiceDetail({ slug, galleries = [] }: { slug: string; 
                             ) : (
                                 <img
                                     src={openItem.media_path}
-                                    alt={captionFor(openItem)}
+                                    alt={captionFor(openItem) || `${service.title} — ${t.serviceDetail.previousWork}`}
+                                    title={captionFor(openItem) || service.title}
                                     className="max-h-[60vh] w-full object-contain"
                                 />
                             )}

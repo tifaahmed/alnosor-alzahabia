@@ -39,16 +39,7 @@ Route::post('/contact', [ContactController::class, 'send'])->name('contact.send'
 Route::get('/sitemap.xml', function () {
     $base = rtrim(config('app.url'), '/');
     $today = now()->toDateString();
-    $serviceSlugs = [
-        'commercial-brokers',
-        'building-materials',
-        'decoration-partitions',
-        'e-commerce',
-        'project-management',
-        'interior-design',
-        'equipment-rental',
-        'event-management',
-    ];
+    $serviceSlugs = Service::orderBy('sort')->orderBy('id')->pluck('slug')->all();
     $urls = [
         ['loc' => $base . '/', 'priority' => '1.0', 'changefreq' => 'weekly'],
         ['loc' => $base . '/about', 'priority' => '0.8', 'changefreq' => 'monthly'],

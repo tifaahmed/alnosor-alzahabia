@@ -33,6 +33,7 @@ import Seo, { breadcrumbSchema, organizationSchema, serviceSchema } from '@/comp
 import { useLocale } from '@/contexts/locale-context';
 import MarketingLayout from '@/layouts/marketing-layout';
 import { serviceImages, serviceSlugs } from '@/lib/gallery';
+import { SITE } from '@/lib/i18n';
 
 const serviceIcons: LucideIcon[] = [
     Wrench,
@@ -163,6 +164,9 @@ setOpenCategory(null);
                         {t.services.badge}
                     </span>
                     <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#1b1b18] md:text-5xl dark:text-amber-100">
+                        <span className="sr-only">
+                            {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                        </span>
                         {t.services.heading}
                     </h1>
                     <p className="mt-6 text-lg text-[#4a4a45] dark:text-amber-100/70">{t.services.lead}</p>
@@ -227,6 +231,7 @@ setOpenCategory(null);
                                                             <Link
                                                                 role="menuitem"
                                                                 href={`/services/${s.slug}`}
+                                                                title={s.title}
                                                                 onClick={() => setOpenCategory(null)}
                                                                 className="group/i flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-[#1b1b18] transition-colors hover:bg-amber-50 dark:text-amber-100 dark:hover:bg-amber-900/30"
                                                             >
@@ -242,6 +247,7 @@ setOpenCategory(null);
                                             </ul>
                                             <a
                                                 href={`#category-${g.key}`}
+                                                title={g.label}
                                                 onClick={() => setOpenCategory(null)}
                                                 className="mt-2 flex items-center justify-between rounded-xl border-t border-amber-200/60 px-3 pt-3 pb-2 text-xs font-semibold text-amber-700 hover:text-amber-900 dark:border-amber-900/40 dark:text-amber-300 dark:hover:text-amber-200"
                                             >
@@ -286,13 +292,15 @@ setOpenCategory(null);
                                                     key={s.slug}
                                                     id={s.slug}
                                                     href={`/services/${s.slug}`}
+                                                    title={s.title}
                                                     as="article"
                                                     className="group relative block cursor-pointer overflow-hidden rounded-3xl border border-amber-200/70 bg-white text-start transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:border-amber-400 hover:shadow-2xl scroll-mt-24 dark:border-amber-900/40 dark:bg-[#161615]"
                                                 >
                                                     <div className="relative aspect-[16/9] overflow-hidden bg-amber-50 dark:bg-amber-900/20">
                                                         <img
                                                             src={serviceImages[s.slug]}
-                                                            alt={s.title}
+                                                            alt={`${s.title} — ${locale === 'ar' ? SITE.nameAr : SITE.name}`}
+                                                            title={s.title}
                                                             loading="lazy"
                                                             className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                                                         />
@@ -347,6 +355,7 @@ setOpenCategory(null);
                             <div className="md:text-end">
                                 <Link
                                     href="/contact"
+                                    title={t.services.ctaButton}
                                     className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-amber-500 to-amber-700 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:scale-105 hover:from-amber-400 hover:to-amber-600"
                                 >
                                     {t.services.ctaButton}

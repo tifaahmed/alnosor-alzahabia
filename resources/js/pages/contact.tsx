@@ -9,7 +9,7 @@ const inputClass =
     'w-full rounded-xl border border-amber-200 bg-[#FBF7EF] px-4 py-2.5 text-sm text-[#1b1b18] placeholder:text-[#4a4a45]/50 focus:border-amber-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500/20 dark:border-amber-900/40 dark:bg-[#0f0f0e] dark:text-amber-100 dark:placeholder:text-amber-100/30 dark:focus:bg-[#161615]';
 
 export default function Contact() {
-    const { t } = useLocale();
+    const { t, locale } = useLocale();
     const page = usePage<{ site?: { url?: string } }>();
     const baseUrl = (page.props.site?.url ?? '').replace(/\/$/, '');
     const form = useForm({
@@ -63,6 +63,9 @@ export default function Contact() {
                         {t.contact.badge}
                     </span>
                     <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-[#1b1b18] md:text-5xl dark:text-amber-100">
+                        <span className="sr-only">
+                            {locale === 'ar' ? SITE.nameAr : SITE.name} —{' '}
+                        </span>
                         {t.contact.heading}
                     </h1>
                     <p className="mt-6 text-lg text-[#4a4a45] dark:text-amber-100/70">{t.contact.lead}</p>
@@ -101,6 +104,7 @@ export default function Contact() {
                                             </p>
                                             <a
                                                 href={`tel:${SITE.phone}`}
+                                                title={`${t.contact.mobile}: ${SITE.phoneDisplay}`}
                                                 dir="ltr"
                                                 className="mt-1 block text-[#4a4a45] hover:text-amber-700 dark:text-amber-100/70 dark:hover:text-amber-300"
                                             >
@@ -118,6 +122,7 @@ export default function Contact() {
                                             </p>
                                             <a
                                                 href={`tel:${SITE.landline}`}
+                                                title={`${t.contact.landline}: ${SITE.landlineDisplay}`}
                                                 dir="ltr"
                                                 className="mt-1 block text-[#4a4a45] hover:text-amber-700 dark:text-amber-100/70 dark:hover:text-amber-300"
                                             >
@@ -135,6 +140,7 @@ export default function Contact() {
                                             </p>
                                             <a
                                                 href="mailto:info@alnosoralzahabia.com"
+                                                title={`${t.contact.email}: info@alnosoralzahabia.com`}
                                                 className="mt-1 block text-[#4a4a45] hover:text-amber-700 dark:text-amber-100/70 dark:hover:text-amber-300"
                                             >
                                                 info@alnosoralzahabia.com
@@ -182,6 +188,7 @@ export default function Contact() {
                                     {t.contact.formLead}{' '}
                                     <a
                                         href="mailto:info@alnosoralzahabia.com"
+                                        title={`${t.contact.email}: info@alnosoralzahabia.com`}
                                         className="font-semibold text-amber-700 hover:underline dark:text-amber-300"
                                     >
                                         info@alnosoralzahabia.com
