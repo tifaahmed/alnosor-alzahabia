@@ -305,6 +305,8 @@ return;
                             alt={s.title}
                             title={s.title}
                             loading={i === 0 ? 'eager' : 'lazy'}
+                            fetchPriority={i === 0 ? 'high' : 'low'}
+                            decoding={i === 0 ? 'sync' : 'async'}
                             className={`absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-[5000ms] ease-out ${
                                 active ? 'scale-110' : 'scale-100'
                             }`}

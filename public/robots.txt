@@ -9,4 +9,4 @@ Disallow: /reset-password
 Disallow: /verify-email
 Disallow: /two-factor-challenge
 
-Sitemap: /sitemap.xml
+Sitemap: https://alnosoralzahabia.com/sitemap.xml

@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { Briefcase, FolderTree, Images, LayoutGrid, Tags } from 'lucide-react';
+import { Briefcase, FolderTree, Images, LayoutGrid, MessageSquare, Tags } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -24,6 +24,11 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Contact Messages',
+        href: '/dashboard/contacts',
+        icon: MessageSquare,
     },
     {
         title: 'Services',

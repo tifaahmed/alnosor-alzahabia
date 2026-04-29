@@ -16,7 +16,7 @@ export default function Contact() {
         source: 'website',
         name: '',
         phone: '',
-        subject: t.contact.subjects[0],
+        subject: '',
         email: '',
         message: '',
     });
@@ -220,18 +220,14 @@ export default function Contact() {
                                 </div>
 
                                 <Field label={t.contact.subject} required className="mt-5" error={form.errors.subject}>
-                                    <select
+                                    <textarea
                                         required
+                                        rows={3}
                                         value={form.data.subject}
                                         onChange={(e) => form.setData('subject', e.target.value)}
-                                        className={inputClass}
-                                    >
-                                        {t.contact.subjects.map((s) => (
-                                            <option key={s} value={s}>
-                                                {s}
-                                            </option>
-                                        ))}
-                                    </select>
+                                        className={`${inputClass} resize-none`}
+                                        placeholder={t.contact.subjects[0]}
+                                    />
                                 </Field>
 
                                 <button

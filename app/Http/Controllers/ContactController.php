@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactConfirmationMail;
 use App\Mail\ContactInquiryMail;
+use App\Models\ContactMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -21,6 +23,15 @@ class ContactController extends Controller
             'message' => ['nullable', 'string', 'max:4000'],
         ]);
 
+        ContactMessage::create([
+            'source' => $data['source'] ?? 'website',
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'subject' => $data['subject'],
+            'email' => $data['email'] ?? null,
+            'message' => $data['message'] ?? null,
+        ]);
+
         $to = config('mail.contact_to', config('mail.from.address'));
         $sourceLabel = match ($data['source'] ?? '') {
             'consultation' => 'Free Consultation',
@@ -35,6 +46,15 @@ class ContactController extends Controller
             email: $data['email'] ?? null,
             body: $data['message'] ?? null,
         ));
+
+        if (!empty($data['email'])) {
+            Mail::to($data['email'])->send(new ContactConfirmationMail(
+                name: $data['name'],
+                phone: $data['phone'],
+                subjectLine: $data['subject'],
+                body: $data['message'] ?? null,
+            ));
+        }
 
         Inertia::flash('toast', ['type' => 'success', 'message' => 'Message sent. We will get back to you shortly.']);
 

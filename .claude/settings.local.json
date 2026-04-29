@@ -23,7 +23,29 @@
       "Bash(node -e ' *)",
       "Bash(npx vite *)",
       "Bash(npx eslint *)",
-      "Bash(curl -s http://127.0.0.1:8000/sitemap.xml)"
+      "Bash(curl -s http://127.0.0.1:8000/sitemap.xml)",
+      "Bash(php /var/www/alnosoralzahabia.com/alnosor-alzahabia/artisan route:list --path=dashboard/service-categories)",
+      "Bash(php /var/www/alnosoralzahabia.com/alnosor-alzahabia/artisan route:list --path=dashboard)",
+      "Bash(mysql *)",
+      "Bash(php *)",
+      "Bash(identify /var/www/alnosoralzahabia.com/alnosor-alzahabia/public/images/logos/logo-with-text-without-background.png)",
+      "Bash(dpkg -l)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost/dashboard/contacts)",
+      "Read(//var/log/**)",
+      "Read(//var/log/php/**)",
+      "Bash(APP_ENV=local php -d display_errors=1 /var/www/alnosoralzahabia.com/alnosor-alzahabia/artisan route:list --path=dashboard/contacts)",
+      "Bash(systemctl restart *)",
+      "Bash(systemctl status *)",
+      "Bash(cwebp -version)",
+      "Bash(convert --version)",
+      "Bash(identify \"/var/www/alnosoralzahabia.com/alnosor-alzahabia/public/images/services/General Home Maintenance.webp\")",
+      "Bash(identify \"/var/www/alnosoralzahabia.com/alnosor-alzahabia/public/images/logos/logo-with-text-without-background.webp\")",
+      "Bash(identify /var/www/alnosoralzahabia.com/alnosor-alzahabia/public/images/services/*.webp)",
+      "Bash(awk '{print $1, $3}')",
+      "Bash(curl -s \"https://alnosoralzahabia.com/sitemap.xml\")",
+      "Bash(awk '{total+=$5; print $5, $9} END {print \"\\\\nTotal:\", total/1024 \" KiB\"}')",
+      "Bash(awk '{print \"logo:\", $5/1024 \" KiB\"}')",
+      "Bash(git add *)"
     ]
   }
 }

@@ -81,17 +81,20 @@ export function Brand({
                     aria-hidden
                     className="pointer-events-none absolute inset-0 rounded-full bg-amber-200/0 transition-colors duration-500 group-hover:bg-amber-200/40"
                 />
-                <img
-                    src="/images/logos/logo-with-text-without-background.png"
-                    alt="Al Nosor Al Zahabia FZE LLC — النسور الذهبية"
-                    title="Al Nosor Al Zahabia FZE LLC"
-                    width={120}
-                    height={120}
-                    className={cn(
-                        sizes.logo,
-                        'relative w-auto transition-transform duration-500 group-hover:[transform:rotateY(15deg)_scale(1.12)]',
-                    )}
-                />
+                <picture>
+                    <source srcSet="/images/logos/logo-with-text-without-background.webp" type="image/webp" />
+                    <img
+                        src="/images/logos/logo-with-text-without-background.png"
+                        alt="Al Nosor Al Zahabia FZE LLC — النسور الذهبية"
+                        title="Al Nosor Al Zahabia FZE LLC"
+                        width={102}
+                        height={64}
+                        className={cn(
+                            sizes.logo,
+                            'relative w-auto transition-transform duration-500 group-hover:[transform:rotateY(15deg)_scale(1.12)]',
+                        )}
+                    />
+                </picture>
             </span>
             <span className="flex flex-col leading-tight">
                 <span

@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\ProjectCategoryController;
 use App\Http\Controllers\Dashboard\ProjectController;
 use App\Http\Controllers\Dashboard\ServiceCategoryController;
 use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\ContactMessageController;
 use App\Http\Controllers\Dashboard\ServiceGalleryController;
 use App\Http\Controllers\ProjectsController;
 use App\Models\Service;
@@ -95,6 +96,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('services/{service}/galleries', [ServiceGalleryController::class, 'store'])->name('services.galleries.store');
         Route::post('services/{service}/galleries/{gallery}', [ServiceGalleryController::class, 'update'])->name('services.galleries.update');
         Route::delete('services/{service}/galleries/{gallery}', [ServiceGalleryController::class, 'destroy'])->name('services.galleries.destroy');
+
+        Route::get('contacts', [ContactMessageController::class, 'index'])->name('contacts.index');
+        Route::patch('contacts/{message}/read', [ContactMessageController::class, 'markRead'])->name('contacts.read');
+        Route::delete('contacts/{message}', [ContactMessageController::class, 'destroy'])->name('contacts.destroy');
     });
 });
 
